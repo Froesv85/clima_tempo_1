@@ -1,7 +1,6 @@
 name: clima_tempo
 description: Um aplicativo de previsão do tempo que exibe informações para diferentes cidades.
 
-# Versão do SDK do Flutter
 environment:
   sdk: ">=2.17.0"
 
@@ -9,11 +8,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  # Dependência para fazer requisições HTTP
-  http: ^0.13.3
-
-  # Dependências adicionais (se necessário)
   provider: ^6.0.0
 
   shared_preferences: ^2.0.6
