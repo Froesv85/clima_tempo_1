@@ -1,89 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:clima_tempo/weather_data.dart';
 
-class WeatherScreen extends StatefulWidget {
-  final String cidade;
+class WeatherScreen extends StatelessWidget {
+  final String city;
 
-  WeatherScreen({required this.cidade});
-
-  @override
-  _WeatherScreenState createState() => _WeatherScreenState();
-}
-
-class _WeatherScreenState extends State<WeatherScreen> {
-  String weather = 'sun'; // Estado inicial do clima
-
-  void updateWeather(String newWeather) {
-    setState(() {
-      weather = newWeather;
-    });
-  }
+  WeatherScreen({required this.city});
 
   @override
   Widget build(BuildContext context) {
+    final weatherForecast = WeatherData.getWeatherForecast();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Clima em ${widget.cidade}'),
+        title: Text('Previsão do Tempo para $city', style: TextStyle(fontFamily: 'Roboto')),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('images/${getWeatherImage(weather)}'),
-            ),
-            SizedBox(height: 20),
-            Text(
-              getWeatherDescription(weather),
-              style: TextStyle(fontSize: 24),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.wb_sunny),
-                  onPressed: () => updateWeather('sun'),
-                ),
-                IconButton(
-                  icon: Icon(Icons.cloud),
-                  onPressed: () => updateWeather('cloudy'),
-                ),
-                IconButton(
-                  icon: Icon(Icons.beach_access),
-                  onPressed: () => updateWeather('rain'),
-                ),
-              ],
-            ),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFED7B83), Color(0xFFEC8A90), Color(0xFFEBA2A4), Color(0xFFE6D1CA), Color(0xFFEEE9C7)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: weatherForecast.map((forecast) {
+              String image = WeatherData.getRandomWeatherImage();
+              return Column(
+                children: [
+                  Image.asset(image, width: 100, height: 100),
+                  Text(forecast, style: TextStyle(fontFamily: 'Roboto', fontSize: 18)),
+                ],
+              );
+            }).toList(),
+          ),
         ),
       ),
     );
-  }
-
-  String getWeatherImage(String weather) {
-    switch (weather) {
-      case 'sun':
-        return '1.png';
-      case 'cloudy':
-        return '8.png';
-      case 'rain':
-        return '18.png';
-      default:
-        return '1.png';
-    }
-  }
-
-  String getWeatherDescription(String weather) {
-    switch (weather) {
-      case 'sun':
-        return 'Ensolarado';
-      case 'cloudy':
-        return 'Nublado';
-      case 'rain':
-        return 'Chuvoso';
-      default:
-        return 'Ensolarado';
-    }
   }
 }

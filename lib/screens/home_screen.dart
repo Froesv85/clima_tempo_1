@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'add_city_screen.dart';
 import 'city_weather_screen.dart';
+import 'weather_screen.dart';
+import 'package:clima_tempo/weather_data.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,7 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Manual do Terráqueo', style: TextStyle(fontFamily: 'Roboto-Regular')),
+        title: Text('Manual do Terráqueo',
+            style: TextStyle(
+                color: Color(0xFFED7B83),
+                fontFamily: 'Roboto-Regular')),
       ),
       drawer: Drawer(
         child: ListView(
@@ -23,10 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xFFED7B83), Color(0xFFEC8A90), Color(0xFFEBA2A4), Color(0xFFE6D1CA), Color(0xFFEEE9C7)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                image: DecorationImage(
+                  image: AssetImage('images/fundo_menu.jpg'),
+                  fit: BoxFit.cover,
                 ),
               ),
               child: Column(
@@ -41,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 30),
-
                 ],
               ),
             ),
@@ -54,15 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   MaterialPageRoute(builder: (context) => AddCityScreen(onAddCity: (city) {
                     setState(() {
                       cities.add(city);
-                      weatherForecast[city] = [
-                        'Domingo: 25°C',
-                        'Segunda: 26°C',
-                        'Terça: 27°C',
-                        'Quarta: 28°C',
-                        'Quinta: 29°C',
-                        'Sexta: 30°C',
-                        'Sábado: 31°C',
-                      ];
+                      weatherForecast[city] = WeatherData.getWeatherForecast();
                     });
                   }, cities: cities)),
                 );
@@ -90,11 +85,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Center(
           child: Text(
-            'Bem-vindo ao Manual do Terráqueo!',
+            'Bem-vindo Terráqueo!',
             style: TextStyle(
-              fontFamily: 'Roboto-Regular',
+              fontFamily: 'Roboto-Bold',
               color: Color(0xFFED7B83),
-              fontSize: 24,
+              fontSize: 30,
             ),
           ),
         ),
@@ -102,4 +97,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

@@ -1,12 +1,32 @@
 import 'package:flutter/material.dart';
 
-class AddCityScreen extends StatelessWidget {
+class AddCityScreen extends StatefulWidget {
   final Function(String) onAddCity;
   final List<String> cities;
 
   AddCityScreen({required this.onAddCity, required this.cities});
 
+  @override
+  _AddCityScreenState createState() => _AddCityScreenState();
+}
+
+class _AddCityScreenState extends State<AddCityScreen> {
   final TextEditingController _controller = TextEditingController();
+
+  void _addCity() {
+    setState(() {
+      if (!widget.cities.contains(_controller.text)) {
+        widget.onAddCity(_controller.text);
+        _controller.clear();
+      }
+    });
+  }
+
+  void _removeCity(int index) {
+    setState(() {
+      widget.cities.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +52,19 @@ class AddCityScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  onAddCity(_controller.text);
-                  Navigator.pop(context);
-                },
+                onPressed: _addCity,
                 child: Text('Adicionar', style: TextStyle(fontFamily: 'Roboto')),
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: cities.length,
+                  itemCount: widget.cities.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(cities[index], style: TextStyle(fontFamily: 'Roboto')),
+                      title: Text(widget.cities[index], style: TextStyle(fontFamily: 'Roboto')),
+                      trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () => _removeCity(index),
+                      ),
                     );
                   },
                 ),

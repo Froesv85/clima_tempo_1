@@ -26,16 +26,25 @@ flutter:
   uses-material-design: true
 
   assets:
-      - images/sol.png
-      - images/nublado.png
-      - images/chuva.png
-      - images/avatar.jpg
-      - images/Fundo_home.png
-      - images/fundo_menu.jpg
+    - images/sol.png
+    - images/nublado.png
+    - images/chuva.png
+    - images/avatar.jpg
+    - images/Fundo_home.png
+    - images/fundo_menu.jpg
+    - images/fundo_city.jpeg
+    - images/temperatura_frio.png
+    - images/temperatura_quente.png
+    - images/sol_nuvens.png
+    - images/trovoada.png
+    - images/sol_chuva.png
+    - images/loading.gif
+    - images/nevoeiro.png
 
   fonts:
     - family: Roboto
       fonts:
         - asset: fonts/Roboto-Regular.ttf
         - asset: fonts/Roboto-Bold.ttf
+        - asset: fonts/Roboto-BlackItalic.ttf
           weight: 700
