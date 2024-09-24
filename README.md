@@ -1,9 +1,9 @@
 ### Manual do Terráqueo
 
 Este é um aplicativo Flutter que permite aos usuários adicionar e gerenciar uma lista de cidades. O aplicativo também oferece a opção de alternar entre temas claro e escuro.
-Foi desenvolvido por SANTHIAGO CHAPIEWSKI e VINICIUS FROES. Com intuito de atender os pré-requisitos levantado pela professora TASSIANA KAUTZMANN na material Desenvolvimento em Aplicativos Moveis
-### CENTRO UNIVERSITÁRIO – CATÓLICA DE SANTA CATARINA 
-### JARAGUA DO SUL - SANTA CATARINA
+Foi desenvolvido por SANTHIAGO CHAPIEWSKI e VINICIUS FROES. Com intuito de atender os pré-requisitos levantado pela professora TASSIANA KAUTZMANN na materia Desenvolvimento em Aplicativos Moveis
+## CENTRO UNIVERSITÁRIO – CATÓLICA DE SANTA CATARINA 
+## JARAGUA DO SUL - SANTA CATARINA
 
 
 ## Funcionalidades
