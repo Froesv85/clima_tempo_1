@@ -12,6 +12,11 @@ Foi desenvolvido por SANTHIAGO CHAPIEWSKI e VINICIUS FROES. Com intuito de atend
 - Alternar entre temas claro e escuro.
 - Interface amigável com gradiente de cores.
 - Visualização da previsão do tempo
+  
+## Paleta de cores
+
+![image](https://github.com/user-attachments/assets/59441f90-081d-48c2-b1c8-09a428b65ff2)
+
 
 ## Capturas de Tela
 
