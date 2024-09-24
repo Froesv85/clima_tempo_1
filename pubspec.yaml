@@ -1,0 +1,41 @@
+name: clima_tempo
+description: Um aplicativo de previsão do tempo que exibe informações para diferentes cidades.
+
+# Versão do SDK do Flutter
+environment:
+  sdk: ">=2.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # Dependência para fazer requisições HTTP
+  http: ^0.13.3
+
+  # Dependências adicionais (se necessário)
+  provider: ^6.0.0
+
+  shared_preferences: ^2.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+      - images/sol.png
+      - images/nublado.png
+      - images/chuva.png
+      - images/avatar.jpg
+      - images/Fundo_home.png
+      - images/fundo_menu.jpg
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+        - asset: fonts/Roboto-Bold.ttf
+          weight: 700
