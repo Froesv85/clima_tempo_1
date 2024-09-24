@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../controllers/tema_controller.dart';
+
 class AddCityScreen extends StatefulWidget {
   final Function(String) onAddCity;
   final List<String> cities;
@@ -32,7 +34,7 @@ class _AddCityScreenState extends State<AddCityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adicionar Cidade', style: TextStyle(fontFamily: 'Roboto')),
+        title: Text('Adicionar Cidade', style: CustomTextStyle.titleStyle),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -48,19 +50,22 @@ class _AddCityScreenState extends State<AddCityScreen> {
             children: <Widget>[
               TextField(
                 controller: _controller,
-                decoration: InputDecoration(labelText: 'Nome da Cidade', labelStyle: TextStyle(fontFamily: 'Roboto')),
+                decoration: InputDecoration(
+                  labelText: 'Nome da Cidade',
+                  labelStyle: CustomTextStyle.labelStyle,
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _addCity,
-                child: Text('Adicionar', style: TextStyle(fontFamily: 'Roboto')),
+                child: Text('Adicionar', style: CustomTextStyle.buttonStyle),
               ),
               Expanded(
                 child: ListView.builder(
                   itemCount: widget.cities.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(widget.cities[index], style: TextStyle(fontFamily: 'Roboto')),
+                      title: Text(widget.cities[index], style: AppTheme.titleStyle),
                       trailing: IconButton(
                         icon: Icon(Icons.delete),
                         onPressed: () => _removeCity(index),
@@ -76,3 +81,4 @@ class _AddCityScreenState extends State<AddCityScreen> {
     );
   }
 }
+

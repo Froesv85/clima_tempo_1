@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:clima_tempo/screens/home_screen.dart';
+import 'package:clima_tempo/controllers/tema_controller.dart';
+import 'package:clima_tempo/screens/theme_selection_screen.dart';
 
 void main() {
-   runApp(MyApp());
+   runApp(
+      ChangeNotifierProvider(
+         create: (context) => TemaController(),
+         child: MyApp(),
+      ),
+   );
 }
 
 class MyApp extends StatelessWidget {
    @override
    Widget build(BuildContext context) {
+      final temaController = Provider.of<TemaController>(context);
+
       return MaterialApp(
          title: 'Manual do Terráqueo',
-         theme: ThemeData(
-            primarySwatch: Colors.blue,
-            fontFamily: 'Roboto-Regular', // Adicione a fonte personalizada aqui
-         ),
-         debugShowCheckedModeBanner: false, // Remover o banner de debug
+         theme: temaController.temaClaro,
+         darkTheme: temaController.temaEscuro,
+         themeMode: temaController.modoTema,
+         debugShowCheckedModeBanner: false,
          home: HomeScreen2(),
       );
    }
@@ -23,14 +32,24 @@ class MyApp extends StatelessWidget {
 class HomeScreen2 extends StatelessWidget {
    @override
    Widget build(BuildContext context) {
+      final temaController = Provider.of<TemaController>(context);
+
       return Scaffold(
          appBar: AppBar(
             title: Text('Manual do Terráqueo'),
             actions: [
                IconButton(
+                  icon: Icon(Icons.brightness_6),
+                  onPressed: () {
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ThemeSelectionScreen()),
+                     );
+                  },
+               ),
+               IconButton(
                   icon: Icon(Icons.exit_to_app),
                   onPressed: () {
-                     // Ação do botão de sair
                      Navigator.of(context).pop();
                   },
                ),

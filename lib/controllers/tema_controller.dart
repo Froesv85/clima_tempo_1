@@ -16,8 +16,7 @@ class TemaController extends ChangeNotifier {
   );
 
   // Modo de tema atual
-  ThemeMode _modoTema = ThemeMode.light;
-
+  ThemeMode _modoTema = ThemeMode.dark;
   ThemeMode get modoTema => _modoTema;
 
   // Alternar entre temas claro e escuro
@@ -29,4 +28,54 @@ class TemaController extends ChangeNotifier {
     }
     notifyListeners();
   }
+}
+class AppTheme {
+  static const Color primaryColor = Color(0xFFED7B83);
+  static const Color secondaryColor = Color(0xFFEEE9C7);
+
+  static const TextStyle titleStyle = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.bold,
+    fontSize: 24,
+    color: secondaryColor,
+  );
+
+  static const TextStyle bodyStyle = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 16,
+    color: secondaryColor,
+  );
+
+  static ThemeData get theme {
+    return ThemeData(
+      primaryColor: primaryColor,
+      scaffoldBackgroundColor: primaryColor,
+      textTheme: TextTheme(
+        titleLarge: titleStyle,
+        bodyLarge: bodyStyle,
+      ),
+    );
+  }
+}
+class CustomTextStyle {
+  static const TextStyle titleStyle = TextStyle(
+    fontFamily: 'Arial',
+    color: Color(0xFFEEE9C7),
+    fontSize: 20,
+  );
+
+  static const TextStyle labelStyle = TextStyle(
+    fontFamily: 'Arial',
+    color: Color(0xFFEEE9C7),
+  );
+
+  static const TextStyle buttonStyle = TextStyle(
+    fontFamily: 'Arial',
+    color: Color(0xFFEEE9C7),
+  );
+
+  static const TextStyle listTileStyle = TextStyle(
+    fontFamily: 'Arial',
+    color: Color(0xFFEEE9C7),
+  );
 }

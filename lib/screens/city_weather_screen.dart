@@ -45,15 +45,9 @@ class CityWeatherScreen extends StatelessWidget {
                     end: Alignment.bottomRight,
                   ),
                 ),
-                child: Center(
-                  child: CircleAvatar(
-                    backgroundColor: Color(0xFFEEE9C7),
-                    radius: 50,
-                    backgroundImage: AssetImage('images/avatar.jpg'),
-                  ),
                 ),
               ),
-            ),
+
             Expanded(
               child: ListView.builder(
                 itemCount: cities.length,
