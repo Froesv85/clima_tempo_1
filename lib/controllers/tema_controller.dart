@@ -4,8 +4,22 @@ class TemaController extends ChangeNotifier {
   // Tema claro
   final ThemeData temaClaro = ThemeData(
     brightness: Brightness.light,
-    primarySwatch: Colors.blue,
+    primaryColor: Color(0xFFEEE9C7),
+    scaffoldBackgroundColor: Color(0xFFEEE9C7),
     visualDensity: VisualDensity.adaptivePlatformDensity,
+    textTheme: TextTheme(
+      titleLarge: TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
+        color: Colors.black,
+      ),
+      bodyLarge: TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: 16,
+        color: Colors.black,
+      ),
+    ),
   );
 
   // Tema escuro
@@ -29,6 +43,7 @@ class TemaController extends ChangeNotifier {
     notifyListeners();
   }
 }
+
 class AppTheme {
   static const Color primaryColor = Color(0xFFED7B83);
   static const Color secondaryColor = Color(0xFFEEE9C7);
@@ -37,19 +52,19 @@ class AppTheme {
     fontFamily: 'Roboto',
     fontWeight: FontWeight.bold,
     fontSize: 24,
-    color: secondaryColor,
+    color: Colors.black,
   );
 
   static const TextStyle bodyStyle = TextStyle(
     fontFamily: 'Roboto',
     fontSize: 16,
-    color: secondaryColor,
+    color: Colors.black,
   );
 
   static ThemeData get theme {
     return ThemeData(
       primaryColor: primaryColor,
-      scaffoldBackgroundColor: primaryColor,
+      scaffoldBackgroundColor: secondaryColor,
       textTheme: TextTheme(
         titleLarge: titleStyle,
         bodyLarge: bodyStyle,
@@ -57,6 +72,7 @@ class AppTheme {
     );
   }
 }
+
 class CustomTextStyle {
   static const TextStyle titleStyle = TextStyle(
     fontFamily: 'Roboto',

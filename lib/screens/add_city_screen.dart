@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../controllers/tema_controller.dart';
 
 class AddCityScreen extends StatefulWidget {
-  final Function(String) onAddCity;
-  final List<String> cities;
+  final Function(Map<String, String>) onAddCity;
+  final Map<String, String> cities;
 
   AddCityScreen({required this.onAddCity, required this.cities});
 
@@ -13,20 +12,23 @@ class AddCityScreen extends StatefulWidget {
 }
 
 class _AddCityScreenState extends State<AddCityScreen> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _tempController = TextEditingController();
 
   void _addCity() {
     setState(() {
-      if (!widget.cities.contains(_controller.text) && _controller.text.isNotEmpty) {
-        widget.onAddCity(_controller.text);
-        _controller.clear();
+      if (!widget.cities.containsKey(_cityController.text) && _cityController.text.isNotEmpty && _tempController.text.isNotEmpty) {
+        String temperature = '${_tempController.text}°C';
+        widget.onAddCity({_cityController.text: temperature});
+        _cityController.clear();
+        _tempController.clear();
       }
     });
   }
 
-  void _removeCity(int index) {
+  void _removeCity(String city) {
     setState(() {
-      widget.cities.removeAt(index);
+      widget.cities.remove(city);
     });
   }
 
@@ -55,9 +57,16 @@ class _AddCityScreenState extends State<AddCityScreen> {
           child: Column(
             children: <Widget>[
               TextField(
-                controller: _controller,
+                controller: _cityController,
                 decoration: InputDecoration(
                   labelText: 'Nome da Cidade',
+                  labelStyle: CustomTextStyle.labelStyle,
+                ),
+              ),
+              TextField(
+                controller: _tempController,
+                decoration: InputDecoration(
+                  labelText: 'Temperatura atual',
                   labelStyle: CustomTextStyle.labelStyle,
                 ),
               ),
@@ -70,11 +79,12 @@ class _AddCityScreenState extends State<AddCityScreen> {
                 child: ListView.builder(
                   itemCount: widget.cities.length,
                   itemBuilder: (context, index) {
+                    String city = widget.cities.keys.elementAt(index);
                     return ListTile(
-                      title: Text(widget.cities[index], style: AppTheme.titleStyle),
+                      title: Text('$city: ${widget.cities[city]}', style: AppTheme.titleStyle),
                       trailing: IconButton(
                         icon: Icon(Icons.delete),
-                        onPressed: () => _removeCity(index),
+                        onPressed: () => _removeCity(city),
                       ),
                     );
                   },
@@ -87,3 +97,4 @@ class _AddCityScreenState extends State<AddCityScreen> {
     );
   }
 }
+

@@ -7,7 +7,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  cupertino_icons: ^1.0.2
+  intl:
   provider: ^6.0.0
 
   shared_preferences: ^2.0.6
@@ -34,6 +35,7 @@ flutter:
     - images/sol_chuva.png
     - images/loading.gif
     - images/nevoeiro.png
+    - images/fundo_lista.jpeg
 
   fonts:
     - family: Roboto

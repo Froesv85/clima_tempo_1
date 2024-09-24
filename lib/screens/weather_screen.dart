@@ -10,10 +10,11 @@ class WeatherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final weatherForecast = WeatherData.getWeatherForecast();
+    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Previsão em  $city', style: CustomTextStyle.listTileStyle),
+        title: Text('Previsão em $city', style: CustomTextStyle.listTileStyle),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -23,18 +24,46 @@ class WeatherScreen extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: weatherForecast.map((forecast) {
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+            itemCount: weatherForecast.length,
+            itemBuilder: (context, index) {
+              String forecast = weatherForecast[index];
               String image = WeatherData.getRandomWeatherImage();
-              return Column(
-                children: [
-                  Image.asset(image, width: 100, height: 100),
-                  Text(forecast, style: CustomTextStyle.titleStyle),
-                ],
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(image, width: 90, height: 90),
+                    SizedBox(height: 5),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                        child: Text(
+                          forecast,
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 20,
+                            color: isDarkTheme ? Colors.white : Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               );
-            }).toList(),
+            },
           ),
         ),
       ),
