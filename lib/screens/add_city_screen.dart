@@ -17,7 +17,7 @@ class _AddCityScreenState extends State<AddCityScreen> {
 
   void _addCity() {
     setState(() {
-      if (!widget.cities.contains(_controller.text)) {
+      if (!widget.cities.contains(_controller.text) && _controller.text.isNotEmpty) {
         widget.onAddCity(_controller.text);
         _controller.clear();
       }
@@ -34,12 +34,18 @@ class _AddCityScreenState extends State<AddCityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adicionar Cidade', style: CustomTextStyle.titleStyle),
+        title: Text('Adicionar Cidade', style: CustomTextStyle.buttonStyle),
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFED7B83), Color(0xFFEC8A90), Color(0xFFEBA2A4), Color(0xFFE6D1CA), Color(0xFFEEE9C7)],
+            colors: [
+              Color(0xFFED7B83),
+              Color(0xFFEC8A90),
+              Color(0xFFEBA2A4),
+              Color(0xFFE6D1CA),
+              Color(0xFFEEE9C7)
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -81,4 +87,3 @@ class _AddCityScreenState extends State<AddCityScreen> {
     );
   }
 }
-

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:clima_tempo/weather_data.dart';
+import 'package:clima_tempo/controllers/tema_controller.dart';
 
 class WeatherScreen extends StatelessWidget {
   final String city;
@@ -12,12 +13,12 @@ class WeatherScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Previsão do Tempo para $city', style: TextStyle(fontFamily: 'Roboto')),
+        title: Text('Previsão em  $city', style: CustomTextStyle.listTileStyle),
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFED7B83), Color(0xFFEC8A90), Color(0xFFEBA2A4), Color(0xFFE6D1CA), Color(0xFFEEE9C7)],
+            colors: [Color(0xFFED7B83), Color(0xFFEC8A90), Color(0xFFEBA2A4)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -30,7 +31,7 @@ class WeatherScreen extends StatelessWidget {
               return Column(
                 children: [
                   Image.asset(image, width: 100, height: 100),
-                  Text(forecast, style: TextStyle(fontFamily: 'Roboto', fontSize: 18)),
+                  Text(forecast, style: CustomTextStyle.titleStyle),
                 ],
               );
             }).toList(),

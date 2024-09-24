@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'add_city_screen.dart';
 import 'city_weather_screen.dart';
-import 'weather_screen.dart';
 import 'package:clima_tempo/weather_data.dart';
+import 'package:clima_tempo/controllers/tema_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,10 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Manual do Terráqueo',
-            style: TextStyle(
-                color: Color(0xFFED7B83),
-                fontFamily: 'Roboto-Regular')),
+        title: Text('Manual do Terráqueo', style: CustomTextStyle.listTileStyle),
       ),
       drawer: Drawer(
         child: ListView(
@@ -38,11 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     'Menu',
-                    style: TextStyle(
-                      color: Color(0xFFEEE9C7),
-                      fontSize: 24,
-                      fontFamily: 'Roboto-Bold',
-                    ),
+                    style: CustomTextStyle.titleStyle.copyWith(fontSize: 24),
                   ),
                   SizedBox(height: 30),
                 ],
@@ -50,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: Icon(Icons.location_city),
-              title: Text('Cidades', style: TextStyle(fontFamily: 'Roboto-Bold')),
+              title: Text('Cidades', style: CustomTextStyle.listTileStyle),
               onTap: () {
                 Navigator.push(
                   context,
@@ -65,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: Icon(Icons.cloud),
-              title: Text('Previsão do Tempo', style: TextStyle(fontFamily: 'Roboto-Bold')),
+              title: Text('Previsão do Tempo', style: CustomTextStyle.listTileStyle),
               onTap: () {
                 Navigator.push(
                   context,
@@ -86,11 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: Text(
             'Bem-vindo Terráqueo!',
-            style: TextStyle(
-              fontFamily: 'Roboto-Bold',
-              color: Color(0xFFED7B83),
-              fontSize: 30,
-            ),
+            style: CustomTextStyle.titleStyle.copyWith(fontSize: 30),
           ),
         ),
       ),

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 class HomeScreen2 extends StatelessWidget {
    @override
    Widget build(BuildContext context) {
-      final temaController = Provider.of<TemaController>(context);
+      Provider.of<TemaController>(context);
 
       return Scaffold(
          appBar: AppBar(

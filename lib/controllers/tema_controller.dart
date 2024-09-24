@@ -16,7 +16,7 @@ class TemaController extends ChangeNotifier {
   );
 
   // Modo de tema atual
-  ThemeMode _modoTema = ThemeMode.dark;
+  ThemeMode _modoTema = ThemeMode.light;
   ThemeMode get modoTema => _modoTema;
 
   // Alternar entre temas claro e escuro
@@ -59,23 +59,23 @@ class AppTheme {
 }
 class CustomTextStyle {
   static const TextStyle titleStyle = TextStyle(
-    fontFamily: 'Arial',
+    fontFamily: 'Roboto',
     color: Color(0xFFEEE9C7),
     fontSize: 20,
   );
 
   static const TextStyle labelStyle = TextStyle(
-    fontFamily: 'Arial',
-    color: Color(0xFFEEE9C7),
+    fontFamily: 'Roboto',
+    color: Color(0xFFEBA2A4),
   );
 
   static const TextStyle buttonStyle = TextStyle(
-    fontFamily: 'Arial',
-    color: Color(0xFFEEE9C7),
+    fontFamily: 'Roboto',
+    color: Color(0xFFEC8A90),
   );
 
   static const TextStyle listTileStyle = TextStyle(
-    fontFamily: 'Arial',
-    color: Color(0xFFEEE9C7),
+    fontFamily: 'Roboto',
+    color: Color(0xFFED7B83),
   );
 }

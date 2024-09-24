@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+import '../controllers/tema_controller.dart';
 import 'home_screen.dart';
-import 'package:clima_tempo/weather_data.dart';
 import 'weather_screen.dart';
 
-class CityWeatherScreen extends StatelessWidget {
+class CityWeatherScreen extends StatefulWidget {
   final List<String> cities;
   final Map<String, List<String>> weatherForecast;
 
   CityWeatherScreen({required this.cities, required this.weatherForecast});
 
   @override
+  _CityWeatherScreenState createState() => _CityWeatherScreenState();
+}
+
+class _CityWeatherScreenState extends State<CityWeatherScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Previsão do Tempo', style: TextStyle(fontFamily: 'Roboto-BoldItalic')),
+        title: Text('Previsão do Tempo', style: CustomTextStyle.listTileStyle),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -24,37 +29,13 @@ class CityWeatherScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xFFED7B83),
-                      Color(0xFFEC8A90),
-                      Color(0xFFEBA2A4),
-                      Color(0xFFE6D1CA),
-                      Color(0xFFEEE9C7),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                ),
-              ),
-
             Expanded(
               child: ListView.builder(
-                itemCount: cities.length,
+                itemCount: widget.cities.length,
                 itemBuilder: (context, index) {
-                  String city = cities[index];
+                  String city = widget.cities[index];
                   return ListTile(
-                    title: Text(city, style: TextStyle(fontFamily: 'Roboto')),
+                    title: Text(city, style: CustomTextStyle.listTileStyle),
                     trailing: IconButton(
                       icon: Icon(Icons.delete),
                       onPressed: () {
@@ -62,23 +43,24 @@ class CityWeatherScreen extends StatelessWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text('Remover Cidade', style: TextStyle(fontFamily: 'Roboto')),
-                              content: Text('Deseja remover $city da lista?', style: TextStyle(fontFamily: 'Roboto-BlackItalic')),
+                              title: Text('Remover Cidade', style: CustomTextStyle.listTileStyle),
+                              content: Text('Deseja remover $city da lista?', style: CustomTextStyle.listTileStyle),
                               actions: [
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('Cancelar', style: TextStyle(fontFamily: 'Roboto')),
+                                  child: Text('Cancelar', style: CustomTextStyle.listTileStyle),
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    cities.removeAt(index);
-                                    weatherForecast.remove(city);
-                                    (context as Element).markNeedsBuild();
+                                    setState(() {
+                                      widget.cities.removeAt(index);
+                                      widget.weatherForecast.remove(city);
+                                    });
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('Remover', style: TextStyle(fontFamily: 'Roboto-Bold')),
+                                  child: Text('Remover', style: CustomTextStyle.listTileStyle),
                                 ),
                               ],
                             );
@@ -99,6 +81,16 @@ class CityWeatherScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        },
+        child: Icon(Icons.keyboard_return),
+      ),
     );
   }
 }
+
