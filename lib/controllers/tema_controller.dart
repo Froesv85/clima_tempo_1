@@ -4,8 +4,6 @@ class TemaController extends ChangeNotifier {
   // Tema claro
   final ThemeData temaClaro = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFEEE9C7),
-    scaffoldBackgroundColor: Color(0xFFEEE9C7),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     textTheme: TextTheme(
       titleLarge: TextStyle(
