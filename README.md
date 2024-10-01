@@ -54,7 +54,8 @@ Criar um app que exibe a previsão do tempo para diferentes cidades. O usuário 
 ![image](https://github.com/user-attachments/assets/234921d7-4dc6-4649-b22b-e5ed09a672b9)
 
 ### Tela Previsão do tempo
-![image](https://github.com/user-attachments/assets/20a57c5b-d62a-46d5-bc21-e70d89000b6c)
+![image](https://github.com/user-attachments/assets/8985023f-876f-428c-9286-bc844ff48839)
+
 
 
 ## Instalação
